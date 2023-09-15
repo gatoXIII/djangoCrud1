@@ -1,0 +1,50 @@
+
+{% extends 'base.html' %}
+{% block content %}
+
+<main class="container">
+    <div class="row">
+        <div class="col-mod-6">
+            <h1 class="card-title text-center">TAREAS</h1>
+
+<ul class="list-group" >
+    {% for tarea in tasks %}
+
+    
+        <a class="list-group-item" href="{% url 'task_detail' tarea.id %}">
+        
+            
+            <header class="d-flex justify-content-between">
+                    {% if tarea.importante %}
+
+                <h2 class="fw-bold text-success" >{{tarea.titulo}}</h2>  
+                
+                {% else %}
+                
+                <h2 class="fw-bold">{{tarea.titulo}}</h2>
+                {% endif %}
+                <p>Creada: {{tarea.creada }} </p>
+            </header>
+            <div> <p>Detalle de la tarea:</p> </div>
+            <div class="row">
+                
+                <p> {{tarea.descripcion}} </p>
+            </div>
+            <div class="row">
+                <dir><p>esta tarea fue completada :</p></dir>
+                
+            {{tarea.completada_fecha|date:'M j Y:i'}}
+            </div>
+           
+
+        </a>
+    
+        {% endfor%}
+
+</ul>
+
+        </div>
+    </div>
+</main>
+
+{% endblock %}
